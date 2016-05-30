@@ -1,0 +1,634 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#"
+     xml:base="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity">
+        <rdfs:comment>Онтология для описания эффективной связности регионов мозга  и построения гипотез.
+
+Данные:
+Мозг: 1) набор областей мозга (состоит из областей мозга)
+Область мозга: 1) часть мозга
+Единица связности: 1) область мозга 2) передает информацию другой единице связности (или внутри себя) по информационному потоку (возбуждает единицу связности, является причиной возбуждения единицы связности) 3) принимает информацию от другой единицы связности (или от себя) через информационный поток (возбуждается от единицы связности) 
+4) характеризуется силой собственной активации 5) сила активации зависит от стимула (активность меняется при изменении стимула) 
+Инормационный поток: 1) связывает две единицы связности (передает информацию из 1 единицы связности во 2 единицу связности) 
+2) характеризуется силой потока (количеством передаваемой информации) 3) передает разное количество информации в зависимости от контекста (модуляции) 
+Внешний информационный поток: 1) информационный поток 2) 1&lt;&gt;2 (единицы связности являются разными инстансами)
+Внутренний информационный поток: 1) информационный поток 2) 1=2 (единицы связности являются одним инстансом)
+Эффективная связность: 1) состоит из количественных характеристик информационных потоков при определенном условии (наличии какого-либо стимула либо отсутствии стимулов) в единицу времени
+Инпут: 1) оказывает влияние на количественные характеристики
+Стимул (сенсорный вход): 1) инпут 2) оказывает влияние на количественные характеристики активности единиц связности
+Контекст (модуляция): 1) инпут 2) оказывает влияние на количественные характеристики информационных потоков</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#InformationtransferProperty -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#InformationtransferProperty"/>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#belongsTo -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#belongsTo">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#isPartOfProperty"/>
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasVoxel"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Voxel"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#explores -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#explores">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#isExploredBy"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Research"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#flowsFrom -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#flowsFrom">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasFlowDirectionProperty"/>
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#sendsInformationWithin"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#ExtrinsicFlow"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#VolumeOfInterest"/>
+        <owl:propertyDisjointWith rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#flowsTo"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#flowsTo -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#flowsTo">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasFlowDirectionProperty"/>
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#receivesInformationWithin"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#ExtrinsicFlow"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#VolumeOfInterest"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#flowsWithin -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#flowsWithin">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasFlowDirectionProperty"/>
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#sendsAndReceivesInformationWithin"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#IntrinsicFlow"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#VolumeOfInterest"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasFlowDirectionProperty -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasFlowDirectionProperty"/>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasPart -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasPart">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasPartProperty"/>
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#isPartOf"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Brain"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#BrainRegion"/>
+        <rdfs:comment>Свойство: целое состоит из частей</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasPartProperty -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasPartProperty"/>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasVoxel -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasVoxel">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasPartProperty"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Voxel"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#isExploredBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#isExploredBy">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Brain"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Research"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#isInfluencedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#isInfluencedBy">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#EffectiveConnectivity"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Input"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#isPartOf -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#isPartOf">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#isPartOfProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#BrainRegion"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Brain"/>
+        <rdfs:comment>Свойство: части составляют целое</rdfs:comment>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#isPartOfProperty -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#isPartOfProperty"/>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#isRepresentedBy -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#isRepresentedBy">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#EffectiveConnectivity"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#InformationFlow"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#receivesInformationWithin -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#receivesInformationWithin">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#InformationtransferProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#VolumeOfInterest"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#ExtrinsicFlow"/>
+        <owl:propertyDisjointWith rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#sendsInformationWithin"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#sendsAndReceivesInformationWithin -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#sendsAndReceivesInformationWithin">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#InformationtransferProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#VolumeOfInterest"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#IntrinsicFlow"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#sendsInformationWithin -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#sendsInformationWithin">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#InformationtransferProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#VolumeOfInterest"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#ExtrinsicFlow"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#dependsOn -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#dependsOn">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Input"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasActivityValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasActivityValue">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasValue"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#VolumeOfInterest"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasDescription -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasDescription">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasFlowStrengthValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasFlowStrengthValue">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasValue"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#InformationFlow"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasInVoxelValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasInVoxelValue">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasValue"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Voxel"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasIndex -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasIndex">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Voxel"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasName">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#Name"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasParticipant -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasParticipant">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Brain"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasValue -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasValue"/>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#maxParticipants -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#maxParticipants">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#maxValues"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#maxVOIs -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#maxVOIs">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#maxValues"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#maxValues -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#maxValues"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Brain -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Brain">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#DomainConcept"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasPart"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#BrainRegion"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasDescription"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasParticipant"/>
+                <owl:allValuesFrom rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#BrainRegion -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#BrainRegion">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#DomainConcept"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#isPartOf"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Brain"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasVoxel"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Voxel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasDescription"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasName"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#Name"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#DomainConcept -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#DomainConcept"/>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#EffectiveConnectivity -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#EffectiveConnectivity">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#DomainConcept"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#isRepresentedBy"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#InformationFlow"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#isInfluencedBy"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Input"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#ExtrinsicFlow -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#ExtrinsicFlow">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#InformationFlow"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#flowsFrom"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#VolumeOfInterest"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#flowsTo"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#VolumeOfInterest"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#IntrinsicFlow"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#InformationFlow -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#InformationFlow">
+        <owl:equivalentClass>
+            <owl:Class>
+                <owl:unionOf rdf:parseType="Collection">
+                    <rdf:Description rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#ExtrinsicFlow"/>
+                    <rdf:Description rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#IntrinsicFlow"/>
+                </owl:unionOf>
+            </owl:Class>
+        </owl:equivalentClass>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#DomainConcept"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasFlowStrengthValue"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Input -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Input">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#DomainConcept"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#dependsOn"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#IntrinsicFlow -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#IntrinsicFlow">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#InformationFlow"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#flowsWithin"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#VolumeOfInterest"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#ModulatoryInput -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#ModulatoryInput">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Input"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#SensoryInput"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Research -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Research">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#DomainConcept"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#explores"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Brain"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#explores"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#EffectiveConnectivity"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#SensoryInput -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#SensoryInput">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Input"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#ValuePartition -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#ValuePartition"/>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#VolumeOfInterest -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#VolumeOfInterest">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#DomainConcept"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasVoxel"/>
+                <owl:minQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Voxel"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasActivityValue"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Voxel -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Voxel">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#DomainConcept"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#belongsTo"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#BrainRegion"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#belongsTo"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#VolumeOfInterest"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasInVoxelValue"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#hasIndex"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#nonNegativeInteger"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // General axioms
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+        <owl:members rdf:parseType="Collection">
+            <rdf:Description rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Brain"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#BrainRegion"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#EffectiveConnectivity"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#InformationFlow"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Input"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Research"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#VolumeOfInterest"/>
+            <rdf:Description rdf:about="http://www.semanticweb.org/notakamilice/ontologies/effectiveconnectivity#Voxel"/>
+        </owl:members>
+    </rdf:Description>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.2.3.20160319-0906) https://github.com/owlcs/owlapi -->
+
